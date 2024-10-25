@@ -53,7 +53,6 @@
 
         <h1 class="restaurant-name">MDSUREM ALWAYS WELCOME</h1>
         <h1 class="slogan">NO MONEY, NO FEAR, COME INSIDE, EAT SOMETHING!</h1>
-        <h1 class="slogan">NO MONEY, NO FEAR, COME INSIDE, EAT SOMETHING!--HAVE A GREAT DAY</h1>
 
     </div>
 </body>
