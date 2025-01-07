@@ -1,0 +1,27 @@
+pipeline{
+    agent{
+        label 'dev'
+    }
+    stages{
+        stage("code"){
+            steps{
+                git 'https://github.com/MdSurem/Jenkins-Test.git'
+            }
+        }
+        stage("build"){
+            steps{
+                sh "mvn clean package"
+            }
+        }
+        stage("artifact"){
+            steps{
+                nexusArtifactUploader artifacts: [[artifactId: 'myweb', classifier: '', file: 'target/myweb-8.7.2.war', type: 'war']], credentialsId: 'nexus', groupId: 'in.javahome', nexusUrl: '54.82.101.250:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'myrepo', version: '8.7.2'
+            }
+        }
+        stage("deploy"){
+            steps{
+                deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://54.197.77.93:8080/')], contextPath: 'surem', war: 'target/*.war'
+            }
+        }
+    }
+}
